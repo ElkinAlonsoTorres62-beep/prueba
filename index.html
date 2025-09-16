@@ -742,8 +742,125 @@
             } else {
                 showPage('login');
             }
+        });//funciones prueba
+        // Funciones para el modal de nuevo préstamo
+function openNewLoanModal() {
+    document.getElementById('newLoanModal').style.display = 'flex';
+    // Limpiar formulario al abrir
+    document.getElementById('studentCode').value = '';
+    document.getElementById('codeError').style.display = 'none';
+    document.getElementById('studentInfo').classList.add('hidden');
+    document.getElementById('gameSelection').classList.add('hidden');
+    
+    // Deseleccionar cualquier juego seleccionado
+    document.querySelectorAll('.game-card').forEach(card => {
+        card.classList.remove('selected');
+    });
+}
+
+function closeModal() {
+    document.getElementById('newLoanModal').style.display = 'none';
+}
+
+// Validar formato del código
+function isValidStudentCode(code) {
+    return /^\d{12}$/.test(code);
+}
+
+// Parsear información del código
+function parseStudentCode(code) {
+    return {
+        year: code.substring(0, 4),
+        period: code.charAt(4),
+        programCode: code.substring(5, 7),
+        studentNumber: code.substring(7)
+    };
+}
+
+// Obtener nombre del programa basado en código
+function getProgramName(code) {
+    const programs = {
+        '10': 'Ingeniería de Sistemas',
+        '11': 'Administración de Empresas',
+        '12': 'Psicología',
+        '13': 'Derecho',
+        '14': 'Contaduría Pública'
+    };
+    return programs[code] || `Programa (Código: ${code})`;
+}
+
+// Validar código cuando se hace clic en el botón
+function validateStudentCode() {
+    const code = document.getElementById('studentCode').value.trim();
+    const codeError = document.getElementById('codeError');
+    
+    if (!isValidStudentCode(code)) {
+        codeError.style.display = 'block';
+        document.getElementById('studentInfo').classList.add('hidden');
+        document.getElementById('gameSelection').classList.add('hidden');
+        return;
+    }
+    
+    codeError.style.display = 'none';
+    
+    // Parsear y mostrar información del código
+    const codeInfo = parseStudentCode(code);
+    
+    document.getElementById('admissionYear').textContent = codeInfo.year;
+    document.getElementById('academicPeriod').textContent = codeInfo.period;
+    document.getElementById('program').textContent = getProgramName(codeInfo.programCode);
+    
+    // Simular verificación en base de datos
+    // En una implementación real, aquí harías una solicitud al servidor
+    setTimeout(() => {
+        document.getElementById('studentInfo').classList.remove('hidden');
+        document.getElementById('gameSelection').classList.remove('hidden');
+    }, 500);
+}
+
+// Seleccionar juego
+document.addEventListener('click', function(e) {
+    if (e.target.closest('.game-card')) {
+        const card = e.target.closest('.game-card');
+        document.querySelectorAll('.game-card').forEach(c => {
+            c.classList.remove('selected');
         });
-    </script>
+        card.classList.add('selected');
+    }
+});
+
+// Confirmar préstamo
+function confirmLoan() {
+    const selectedGame = document.querySelector('.game-card.selected');
+    if (!selectedGame) {
+        alert('Por favor seleccione un juego');
+        return;
+    }
+    
+    const gameName = selectedGame.querySelector('.game-title').textContent;
+    const studentCode = document.getElementById('studentCode').value;
+    
+    alert(`Préstamo confirmado para el juego: ${gameName}\nEstudiante: ${studentCode}`);
+    // Aquí enviarías los datos al servidor
+    
+    closeModal();
+}
+
+// Validar entrada mientras se escribe (solo números)
+document.getElementById('studentCode').addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g, '');
+    if (this.value.length > 12) {
+        this.value = this.value.slice(0, 12);
+    }
+});
+
+// Cerrar modal al hacer clic fuera del contenido
+document.getElementById('newLoanModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+</script>
     <!-- Modal para Nuevo Préstamo -->
 <div id="newLoanModal" class="modal">
     <div class="modal-content">
@@ -833,5 +950,6 @@
 </div>
 </body>
 </html>
+
 
 
