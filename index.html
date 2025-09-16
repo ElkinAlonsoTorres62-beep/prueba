@@ -33,61 +33,62 @@
         }
     </script>
     <style>
-        body {
-            font-family: sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        .animate-blob {
-            animation: blob 7s infinite;
-        }
-        @keyframes blob {
-            0%, 100% { transform: translate(0px, 0px) scale(1); }
-            33% { transform: translate(30px, -50px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
-        }
-        .animation-delay-2000 { animation-delay: 2s; }
-        .animation-delay-4000 { animation-delay: 4s; }
-        .page { display: none; }
-        .active-page { display: block; }
-        
-        /* Estilo para el logo de la universidad */
-        .logo-usb {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            text-align: center;
-            background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%);
-            color: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        .logo-usb-small {
-            width: 40px;
-            height: 40px;
-            font-size: 10px;
-            padding: 4px;
-            line-height: 1.1;
-        }
-        
-        .logo-usb-large {
-            width: 120px;
-            height: 120px;
-            font-size: 16px;
-            padding: 12px;
-            line-height: 1.2;
-        }
-        
-        /* Estilo para el logo de imagen */
-        .logo-image {
-            max-width: 180px;
-            height: auto;
-            margin: 0 auto;
-            display: block;
-        }
+        /* Solo mantener los estilos específicos de la página aquí */
+    body {
+        font-family: sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+    .animate-blob {
+        animation: blob 7s infinite;
+    }
+    @keyframes blob {
+        0%, 100% { transform: translate(0px, 0px) scale(1); }
+        33% { transform: translate(30px, -50px) scale(1.1); }
+        66% { transform: translate(-20px, 20px) scale(0.9); }
+    }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+    .page { display: none; }
+    .active-page { display: block; }
+    
+    /* Estilo para el logo de la universidad */
+    .logo-usb {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        text-align: center;
+        background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%);
+        color: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo-usb-small {
+        width: 40px;
+        height: 40px;
+        font-size: 10px;
+        padding: 4px;
+        line-height: 1.1;
+    }
+    
+    .logo-usb-large {
+        width: 120px;
+        height: 120px;
+        font-size: 16px;
+        padding: 12px;
+        line-height: 1.2;
+    }
+    
+    /* Estilo para el logo de imagen */
+    .logo-image {
+        max-width: 180px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -950,6 +951,7 @@ document.getElementById('newLoanModal').addEventListener('click', function(e) {
 </script>
 </body>
 </html>
+
 
 
 
