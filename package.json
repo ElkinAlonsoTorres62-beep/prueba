@@ -1,0 +1,25 @@
+{
+  "name": "Juegos-de-prestamos-Universidad-Simon-Bolivar",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-scripts": "^5.0.1",
+    "tailwindcss": "^3.4.10",
+    "lucide-react": "^0.441.0",
+    "react-router-dom": "^6.26.2",
+    "html2canvas": "^1.4.1",
+    "framer-motion": "^11.5.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+}
