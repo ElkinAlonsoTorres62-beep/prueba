@@ -511,6 +511,93 @@
             <p class="mt-2">Contacto: <a href="mailto:j_perez53@unisimon.edu.co" class="underline hover:text-green-300">j_perez53@unisimon.edu.co</a></p>
         </div>
     </footer>
+     <!-- Modal para Nuevo Préstamo -->
+<div id="newLoanModal" class="modal">
+    <div class="modal-content">
+        <div class="p-6 border-b border-gray-200">
+            <h2 class="text-2xl font-bold text-primary-800">Nuevo Préstamo</h2>
+        </div>
+        
+        <div class="p-6">
+            <div class="form-group mb-4">
+                <label for="studentCode" class="block text-gray-700 font-medium mb-2">Código de Estudiante</label>
+                <input type="text" id="studentCode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Ingrese su código de 12 dígitos" maxlength="12">
+                <div id="codeError" class="error">Por favor ingrese un código válido de 12 dígitos numéricos</div>
+            </div>
+            
+            <button onclick="validateStudentCode()" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors mb-4">
+                Validar Código
+            </button>
+            
+            <div id="studentInfo" class="student-info hidden">
+                <h3 class="text-lg font-bold mb-2">Información del Estudiante</h3>
+                <p><strong>Nombre:</strong> <span id="studentName">Juan Pérez</span></p>
+                <p><strong>Año de ingreso:</strong> <span id="admissionYear">2023</span></p>
+                <p><strong>Periodo académico:</strong> <span id="academicPeriod">1</span></p>
+                <p><strong>Programa:</strong> <span id="program">Ingeniería de Sistemas</span></p>
+                <p><strong>Estado:</strong> <span id="studentStatus" class="text-green-600 font-medium">Activo</span></p>
+            </div>
+            
+            <div id="gameSelection" class="hidden mt-6">
+                <h3 class="text-lg font-bold mb-4 text-primary-800">Seleccione un Juego</h3>
+                <p class="text-gray-600 mb-4">Elija uno de los juegos disponibles para préstamo</p>
+                
+                <div class="game-cards">
+                    <div class="game-card" data-game="ajedrez">
+                        <div class="game-image">Imagen de Ajedrez</div>
+                        <div class="game-title">Ajedrez</div>
+                        <div class="game-desc">Juego de estrategia para 2 jugadores</div>
+                        <div class="game-stock">
+                            <span>En stock: 8</span>
+                            <span class="stock-badge available">Disponible</span>
+                        </div>
+                        <div class="game-status">
+                            <span>Estado: Bueno</span>
+                            <span class="status-badge good">Bueno</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card" data-game="uno">
+                        <div class="game-image">Imagen de UNO</div>
+                        <div class="game-title">UNO</div>
+                        <div class="game-desc">Juego de cartas para 2-10 jugadores</div>
+                        <div class="game-stock">
+                            <span>En stock: 12</span>
+                            <span class="stock-badge available">Disponible</span>
+                        </div>
+                        <div class="game-status">
+                            <span>Estado: Excelente</span>
+                            <span class="status-badge excellent">Excelente</span>
+                        </div>
+                    </div>
+                    
+                    <div class="game-card" data-game="jenga">
+                        <div class="game-image">Imagen de Jenga</div>
+                        <div class="game-title">Jenga</div>
+                        <div class="game-desc">Juego de habilidad física y mental</div>
+                        <div class="game-stock">
+                            <span>En stock: 6</span>
+                            <span class="stock-badge low">Pocas unidades</span>
+                        </div>
+                        <div class="game-status">
+                            <span>Estado: Reparación</span>
+                            <span class="status-badge repair">Reparación</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-4 mt-6">
+                    <button onclick="confirmLoan()" class="flex-1 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                        Confirmar Préstamo
+                    </button>
+                    <button onclick="closeModal()" class="flex-1 px-4 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         // Datos de ejemplo para el historial
@@ -861,95 +948,9 @@ document.getElementById('newLoanModal').addEventListener('click', function(e) {
     }
 });
 </script>
-    <!-- Modal para Nuevo Préstamo -->
-<div id="newLoanModal" class="modal">
-    <div class="modal-content">
-        <div class="p-6 border-b border-gray-200">
-            <h2 class="text-2xl font-bold text-primary-800">Nuevo Préstamo</h2>
-        </div>
-        
-        <div class="p-6">
-            <div class="form-group mb-4">
-                <label for="studentCode" class="block text-gray-700 font-medium mb-2">Código de Estudiante</label>
-                <input type="text" id="studentCode" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Ingrese su código de 12 dígitos" maxlength="12">
-                <div id="codeError" class="error">Por favor ingrese un código válido de 12 dígitos numéricos</div>
-            </div>
-            
-            <button onclick="validateStudentCode()" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors mb-4">
-                Validar Código
-            </button>
-            
-            <div id="studentInfo" class="student-info hidden">
-                <h3 class="text-lg font-bold mb-2">Información del Estudiante</h3>
-                <p><strong>Nombre:</strong> <span id="studentName">Juan Pérez</span></p>
-                <p><strong>Año de ingreso:</strong> <span id="admissionYear">2023</span></p>
-                <p><strong>Periodo académico:</strong> <span id="academicPeriod">1</span></p>
-                <p><strong>Programa:</strong> <span id="program">Ingeniería de Sistemas</span></p>
-                <p><strong>Estado:</strong> <span id="studentStatus" class="text-green-600 font-medium">Activo</span></p>
-            </div>
-            
-            <div id="gameSelection" class="hidden mt-6">
-                <h3 class="text-lg font-bold mb-4 text-primary-800">Seleccione un Juego</h3>
-                <p class="text-gray-600 mb-4">Elija uno de los juegos disponibles para préstamo</p>
-                
-                <div class="game-cards">
-                    <div class="game-card" data-game="ajedrez">
-                        <div class="game-image">Imagen de Ajedrez</div>
-                        <div class="game-title">Ajedrez</div>
-                        <div class="game-desc">Juego de estrategia para 2 jugadores</div>
-                        <div class="game-stock">
-                            <span>En stock: 8</span>
-                            <span class="stock-badge available">Disponible</span>
-                        </div>
-                        <div class="game-status">
-                            <span>Estado: Bueno</span>
-                            <span class="status-badge good">Bueno</span>
-                        </div>
-                    </div>
-                    
-                    <div class="game-card" data-game="uno">
-                        <div class="game-image">Imagen de UNO</div>
-                        <div class="game-title">UNO</div>
-                        <div class="game-desc">Juego de cartas para 2-10 jugadores</div>
-                        <div class="game-stock">
-                            <span>En stock: 12</span>
-                            <span class="stock-badge available">Disponible</span>
-                        </div>
-                        <div class="game-status">
-                            <span>Estado: Excelente</span>
-                            <span class="status-badge excellent">Excelente</span>
-                        </div>
-                    </div>
-                    
-                    <div class="game-card" data-game="jenga">
-                        <div class="game-image">Imagen de Jenga</div>
-                        <div class="game-title">Jenga</div>
-                        <div class="game-desc">Juego de habilidad física y mental</div>
-                        <div class="game-stock">
-                            <span>En stock: 6</span>
-                            <span class="stock-badge low">Pocas unidades</span>
-                        </div>
-                        <div class="game-status">
-                            <span>Estado: Reparación</span>
-                            <span class="status-badge repair">Reparación</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flex gap-4 mt-6">
-                    <button onclick="confirmLoan()" class="flex-1 px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-                        Confirmar Préstamo
-                    </button>
-                    <button onclick="closeModal()" class="flex-1 px-4 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors">
-                        Cancelar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 </body>
 </html>
+
 
 
 
