@@ -328,7 +328,7 @@
                     <button onclick="openModal('addGameModal')" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                         <i class="fas fa-plus-circle mr-2"></i> Agregar Juego
                     </button>
-                    <button class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <button onclick="openModal('updateGameModal')" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                         <i class="fas fa-sync-alt mr-2"></i> Actualizar Juego
                     </button>
                 </div>
@@ -700,6 +700,95 @@
     </div>
   </div>
 </div>
+
+    <!-- Modal para Actualizar Juego (agregar después del modal de agregar juego) -->
+<div id="updateGameModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-md mx-4">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-primary-800">Actualizar Juego</h3>
+        <button onclick="closeModal('updateGameModal')" class="text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="update-game-form" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Seleccionar Juego a Actualizar</label>
+          <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+            <option value="">Selecciona un juego</option>
+            <option value="Ajedrez">Ajedrez</option>
+            <option value="UNO">UNO</option>
+            <option value="Jenga">Jenga</option>
+            <option value="Monopoly">Monopoly</option>
+            <option value="Scrabble">Scrabble</option>
+            <!-- Más opciones se cargarían dinámicamente desde la base de datos -->
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Nombre del Juego</label>
+          <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Nombre del juego" required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Categoría</label>
+          <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+            <option value="">Selecciona una categoría</option>
+            <option value="Estrategia">Estrategia</option>
+            <option value="Cartas">Cartas</option>
+            <option value="Mesa">Mesa</option>
+            <option value="Habilidad">Habilidad</option>
+            <option value="Familiar">Familiar</option>
+            <option value="Educativo">Educativo</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Descripción</label>
+          <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" rows="3" placeholder="Descripción del juego" required></textarea>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-700 font-medium mb-2">Cantidad Disponible</label>
+            <input type="number" min="0" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+          </div>
+          
+          <div>
+            <label class="block text-gray-700 font-medium mb-2">Estado Actual</label>
+            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+              <option value="Bueno">Buen estado</option>
+              <option value="Nuevo">Nuevo</option>
+              <option value="Reparacion">Necesita reparación</option>
+              <option value="Daniado">Dañado</option>
+              <option value="Perdido">Extraviado/Perdido</option>
+            </select>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Ubicación/Almacén</label>
+          <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Ubicación del juego">
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Notas de Actualización</label>
+          <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" rows="2" placeholder="Motivo de la actualización o cambios realizados..."></textarea>
+        </div>
+        
+        <div class="pt-4 flex justify-end space-x-3">
+          <button type="button" onclick="closeModal('updateGameModal')" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+            Actualizar Juego
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
     
     <script>
         // Datos de ejemplo para el historial
@@ -979,6 +1068,45 @@ document.getElementById('add-game-form').addEventListener('submit', function(e) 
   // location.reload();
 });
 
+        // Manejar envío del formulario de actualizar juego
+document.getElementById('update-game-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Aquí iría la lógica para procesar la actualización del juego
+  // Actualizar en base de datos, modificar inventario, etc.
+  
+  alert('Juego actualizado exitosamente');
+  closeModal('updateGameModal');
+  
+  // Opcional: recargar la página o actualizar la lista de inventario
+  // location.reload();
+});
+
+// Función para cargar datos del juego seleccionado (ejemplo)
+function loadGameData(gameId) {
+  // Esta función cargaría los datos del juego seleccionado en el formulario
+  // Se conectaría con una base de datos o API para obtener la información
+  console.log("Cargando datos del juego con ID:", gameId);
+  
+  // Ejemplo de cómo se podrían cargar los datos:
+  /*
+  fetch(`/api/games/${gameId}`)
+    .then(response => response.json())
+    .then(data => {
+      document.querySelector('#update-game-form input[type="text"]').value = data.name;
+      document.querySelector('#update-game-form select[name="category"]').value = data.category;
+      // ... completar los demás campos
+    });
+  */
+}
+
+// Event listener para cuando se selecciona un juego diferente
+document.querySelector('#update-game-form select').addEventListener('change', function() {
+  if (this.value) {
+    loadGameData(this.value);
+  }
+});
+
 // Manejar envío del formulario de nuevo préstamo
 document.getElementById('new-loan-form').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -989,6 +1117,7 @@ document.getElementById('new-loan-form').addEventListener('submit', function(e) 
     </script>
 </body>
 </html>
+
 
 
 
