@@ -325,7 +325,7 @@
             <div class="bg-white p-6 rounded-xl shadow-lg">
                 <h2 class="text-xl font-bold mb-4 text-primary-800">Acciones de Inventario</h2>
                 <div class="space-y-3">
-                    <button class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                    <button onclick="openModal('addGameModal')" class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
                         <i class="fas fa-plus-circle mr-2"></i> Agregar Juego
                     </button>
                     <button class="w-full px-4 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
@@ -631,7 +631,76 @@
     </div>
   </div>
 </div>
-   
+
+    <!-- Modal para Agregar Juego (agregar después del modal de devolución) -->
+<div id="addGameModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-md mx-4">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-xl font-bold text-primary-800">Agregar Nuevo Juego</h3>
+        <button onclick="closeModal('addGameModal')" class="text-gray-400 hover:text-gray-600">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="add-game-form" class="space-y-4">
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Nombre del Juego</label>
+          <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Ej: Ajedrez, UNO, Jenga..." required>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Categoría</label>
+          <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+            <option value="">Selecciona una categoría</option>
+            <option value="Estrategia">Estrategia</option>
+            <option value="Cartas">Cartas</option>
+            <option value="Mesa">Mesa</option>
+            <option value="Habilidad">Habilidad</option>
+            <option value="Familiar">Familiar</option>
+            <option value="Educativo">Educativo</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Descripción</label>
+          <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" rows="3" placeholder="Describe brevemente el juego..." required></textarea>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-gray-700 font-medium mb-2">Cantidad</label>
+            <input type="number" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Ej: 5" required>
+          </div>
+          
+          <div>
+            <label class="block text-gray-700 font-medium mb-2">Estado Inicial</label>
+            <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" required>
+              <option value="Bueno">Buen estado</option>
+              <option value="Nuevo">Nuevo</option>
+              <option value="Reparacion">Necesita reparación</option>
+            </select>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-gray-700 font-medium mb-2">Ubicación/Almacén</label>
+          <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500" placeholder="Ej: Estante A, Alacena 3...">
+        </div>
+        
+        <div class="pt-4 flex justify-end space-x-3">
+          <button type="button" onclick="closeModal('addGameModal')" class="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 transition-colors">
+            Cancelar
+          </button>
+          <button type="submit" class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors">
+            Agregar Juego
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+    
     <script>
         // Datos de ejemplo para el historial
         const loanHistory = [
@@ -896,6 +965,20 @@ document.getElementById('return-form').addEventListener('submit', function(e) {
   // location.reload();
 });
 
+        // Manejar envío del formulario de agregar juego
+document.getElementById('add-game-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Aquí iría la lógica para procesar el nuevo juego
+  // Guardar en base de datos, actualizar inventario, etc.
+  
+  alert('Juego agregado al inventario exitosamente');
+  closeModal('addGameModal');
+  
+  // Opcional: recargar la página o actualizar la lista de inventario
+  // location.reload();
+});
+
 // Manejar envío del formulario de nuevo préstamo
 document.getElementById('new-loan-form').addEventListener('submit', function(e) {
   e.preventDefault();
@@ -906,6 +989,7 @@ document.getElementById('new-loan-form').addEventListener('submit', function(e) 
     </script>
 </body>
 </html>
+
 
 
 
